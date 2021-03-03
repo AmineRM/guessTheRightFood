@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+#container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+}
+
+#container .chose {
+  height: 100vh;
+  background-size: 200%;
+  background-position: 50%;
+  -webkit-transition: all ease 0.25s;
+  transition: all ease 0.25s;
+  cursor: pointer;
+}
+
+#container .chose:hover {
+  background-size: 230%;
+  position: relative;
+}
+
+#container .chose:hover::after {
+  content: "";
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.438);
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+#container .chose:first-child {
+  background-image: url(./img/apple.jpg);
+}
+
+#container .chose:last-child {
+  background-image: url(./img/banana.jpg);
+}
+
+.true {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+  font-size: 10em;
+  color: #fff;
+  font-weight: 900;
+  background-color: rgba(42, 209, 42, 0.863);
+}
+
+.false {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
+  font-size: 10em;
+  color: #fff;
+  font-weight: 900;
+  background-color: rgba(189, 0, 0, 0.863);
+}
+/*# sourceMappingURL=style.css.map */
