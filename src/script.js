@@ -36,6 +36,7 @@ const data = [
     }
 ]
 
+// get result
 const displayResult = (bool) => {
     const resulteScreen = document.createElement("div")
     resulteScreen.className = bool
@@ -48,6 +49,7 @@ const renderChoices = () => {
     document.body.innerHTML = `<div id="container"></div>`
     const container = document.getElementById("container")
 
+    // render Choices
     let firstFruit = null;
     for (let i = 0; i < 2; i++) {
         const fruit = data[Math.floor(data.length * Math.random())];
@@ -62,6 +64,7 @@ const renderChoices = () => {
         container.append(chosenTempalte)
     }
 
+    // on user choice
     const choices = document.querySelectorAll(".chose")
     choices.forEach( chosen => {
         chosen.addEventListener("click", e => {
@@ -86,7 +89,7 @@ const renderChoices = () => {
     })
 }
 
-
+// throw errors
 try {
     renderChoices()
 } catch (err) {
