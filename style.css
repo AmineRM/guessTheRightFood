@@ -9,16 +9,16 @@
 #container {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 100vh;
 }
 
 #container .chose {
-  height: 50vh;
   background-size: 200%;
   background-position: 50%;
-  -webkit-transition: all ease 0.25s;
-  transition: all ease 0.25s;
+  -webkit-transition: ease 0.1s;
+  transition: ease 0.1s;
   cursor: pointer;
 }
 
@@ -28,11 +28,17 @@
 }
 
 #container .chose:hover::after {
-  content: "";
+  content: "Click";
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.438);
   width: 100%;
+  color: #fff;
+  font-weight: 600;
   top: 0;
+  font-size: 4em;
   left: 0;
   height: 100%;
 }
@@ -54,6 +60,7 @@
   height: 100vh;
   display: -ms-grid;
   display: grid;
+  cursor: pointer;
   place-content: center;
   font-size: 10em;
   color: #fff;
@@ -70,10 +77,22 @@
   height: 100vh;
   display: -ms-grid;
   display: grid;
+  cursor: pointer;
   place-content: center;
   font-size: 10em;
   color: #fff;
   font-weight: 900;
   background-color: rgba(189, 0, 0, 0.863);
+}
+
+@media only screen and (max-width: 500px) {
+  #container {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    grid-auto-rows: 50vh;
+  }
+  .true, .false {
+    font-size: 5em;
+  }
 }
 /*# sourceMappingURL=style.css.map */

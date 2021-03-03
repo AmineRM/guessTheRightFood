@@ -6,7 +6,7 @@ const data = [
     },
     {
         name : "avocado",
-        url : "./img/avocado.jpeg",
+        url : "./img/avocado.jpg",
         score : 160
     },
     {
@@ -21,7 +21,7 @@ const data = [
     },
     {
         name : "pear",
-        url : "./img/pear.jpeg",
+        url : "./img/pear.jpg",
         score : 57
     },
     {
@@ -31,53 +31,64 @@ const data = [
     },
     {
         name : "strawberry",
-        url : "./img/strawberry.jpeg",
+        url : "./img/strawberry.jpg",
         score : 33
     }
 ]
 
-function render() {
+const displayResult = (bool) => {
+    const resulteScreen = document.createElement("div")
+    resulteScreen.className = bool
+    resulteScreen.textContent = bool
+    document.body.append(resulteScreen)
+    document.querySelector(`.${bool}`).addEventListener("click", renderChoices)
+}
+
+const renderChoices = () => {
+    document.body.innerHTML = `<div id="container"></div>`
     const container = document.getElementById("container")
-    container.innerHTML = ""
+
+    let firstFruit = null;
     for (let i = 0; i < 2; i++) {
         const fruit = data[Math.floor(data.length * Math.random())];
-        const choseTempalte = document.createElement("div")
-        choseTempalte.className = "chose"
-        choseTempalte.style.backgroundImage = `url(${fruit.url})` 
-        choseTempalte.setAttribute("data-score", fruit.score.toString())
-        choseTempalte.setAttribute("data-name", fruit.name)
-        container.append(choseTempalte)
+        (fruit == firstFruit) && renderChoices()
+        firstFruit = fruit
+
+        const chosenTempalte = document.createElement("div")
+        chosenTempalte.className = "chose"
+        chosenTempalte.style.backgroundImage = `url(${fruit.url})` 
+        chosenTempalte.setAttribute("data-score", fruit.score.toString())
+        chosenTempalte.setAttribute("data-name", fruit.name)
+        container.append(chosenTempalte)
     }
-}
 
-function resulte(bool) {
-    const resulte = document.createElement("div")
-    resulte.className = bool
-    resulte.textContent = bool
-    document.body.append(resulte)
-}
-
-render()
-
-const choses = document.querySelectorAll(".chose")
-choses.forEach( chose => {
-    chose.addEventListener("click", e => {
-        if (choses[0].dataset.score > choses[1].dataset.score 
-            || choses[0].dataset.score == choses[1].dataset.score) {
-            if (choses[0].dataset.name == chose.dataset.name){
-                resulte("true")
+    const choices = document.querySelectorAll(".chose")
+    choices.forEach( chosen => {
+        chosen.addEventListener("click", e => {
+            const correctAnswer = () => {
+                if (choices[0].dataset.score > choices[1].dataset.score) {
+                    return choices[0];
+                }
+                else if (choices[0].dataset.score < choices[1].dataset.score) {
+                    return choices[1]
+                }
+                else {
+                    throw new Error("Error, please reload the page !")
+                }
             }
-            else{
-                resulte("false")
+            if (correctAnswer().dataset.name == chosen.dataset.name) {
+                displayResult("true")
             }
-        } else {
-            if (choses[1].dataset.name == chose.dataset.name){
-                document.body.append(`<div class="true" >True</div>`)
-                resulte("true")
+            else {
+                displayResult("false")
             }
-            else{
-                resulte("false")
-            }
-        }
+        })
     })
-})
+}
+
+
+try {
+    renderChoices()
+} catch (err) {
+    document.body.innerHTML = `<h1>${err}</h1>`
+}
