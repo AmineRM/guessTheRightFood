@@ -38,6 +38,7 @@ const data = [
 
 function render() {
     const container = document.getElementById("container")
+    container.innerHTML = ""
     for (let i = 0; i < 2; i++) {
         const fruit = data[Math.floor(data.length * Math.random())];
         const choseTempalte = document.createElement("div")
@@ -80,4 +81,3 @@ choses.forEach( chose => {
         }
     })
 })
-

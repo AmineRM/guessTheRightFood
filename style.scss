@@ -7,9 +7,9 @@
 
 #container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     .chose {
-        height: 100vh;
+        height: 50vh;
         background-size: 200%;
         background-position: 50%;
         transition: all ease 0.25s;
